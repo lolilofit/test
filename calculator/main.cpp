@@ -2,81 +2,66 @@
 #include<fstream>
 #include<string>
 #include<stack>
+#include<list>
+#include<map>
+#include<vector>
 
 using namespace std;
 
+//exeptions 
+
 class Operations {
-	Calc *p;
- public:
-	 virtual void abstract_operation() = 0;
-};
-
-class Pop : public Operations {
 public:
-	void abstract_operation() {
-	  
-	}
+	virtual void abstract_operation() = 0;
 };
 
-class Push : public Operations {
-public:
-	void abstract_operation() {}
-};
+class Push : Operations {};
 
-class Calc {
+class Context {
+	list <string> arg;
 	stack <float> st;
-    public:
-		virtual Operations *set_operation() = 0;
-		void call(string operation, ifstream &in) {
-			string operand, num;
 
-			if (operation == "PUSH") {
-				if (!in.eof())
-					getline(in, operand, ' ');
-			}
+	void push() {}
 
-			if (operation == "DEFINE") {
-				if (!in.eof())
-					getline(in, num, ' ');
-				float number = stof(num);
+	void pop() {}
 
-				if (!in.eof())
-					getline(in, operand, ' ');
-			}
-
-			//if(operation == "SQRT")
-
-
-			//if(operation == "PRINT")
-
-		}
+	void pick() {}
 };
 
-class PushDef : public Calc {
-    public:
-		Operations *set_operation() {
-			
+
+class Calculator {
+	map<string, void (*)()> operations;
+
+	void search_op() {}
+
+public:
+	void define_new(string name, void(*func)()) {}
+
+	void read(ifstream &in) {
+		string operation, arg;
+
+		while (!in.eof()) {
+			getline(in, operation);
+			for(auto cur = operation.begin(); cur != operation.end(); ++cur) {
+				if (*cur == ' ')
+
+			}
 		}
-};
-
-void read(ifstream &in) {
-	string operation;
-
-	while (!in.eof()) {
-		getline(in, operation, ' ');
-		//call(operation, in);
 	}
 
-}
+};
+
+
+
 
 int main(int argc, const char *argv[]) {
 	ifstream in;
-	
+
 	if (argc == 2) {
 		in.open(argv[1]);
 	}
 
 
-	 
+
 	return 0;
 }
