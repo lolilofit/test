@@ -39,12 +39,12 @@ public:
 
 	void read(ifstream &in) {
 		string operation, arg;
-
+	
 		while (!in.eof()) {
 			getline(in, operation);
 			for(auto cur = operation.begin(); cur != operation.end(); ++cur) {
 				if (*cur == ' ')
-
+					
 			}
 		}
 	}
