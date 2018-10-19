@@ -115,7 +115,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="context.cpp" />
+    <ClCompile Include="create.cpp" />
+    <ClCompile Include="CreateOne.cpp" />
+    <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="operations.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="in.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="context.h" />
+    <ClInclude Include="create.h" />
+    <ClInclude Include="CreateOne.h" />
+    <ClInclude Include="operations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

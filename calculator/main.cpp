@@ -2,81 +2,55 @@
 #include<fstream>
 #include<string>
 #include<stack>
+#include<list>
+#include<map>
+#include<vector>
+#include "context.h"
+#include "operations.h"
+#include "create.h"
+#include "CreateOne.h"
+
 
 using namespace std;
 
-class Operations {
-	Calc *p;
- public:
-	 virtual void abstract_operation() = 0;
-};
 
-class Pop : public Operations {
+class Calculator {
+   
+	Context *stack;
+	
 public:
-	void abstract_operation() {
-	  
+
+	void read(ifstream &in) {
+		string operation, arg;
+		list<string> arguments;
+		
+		while (!in.eof()) {
+			getline(in, operation);
+			for (auto cur = operation.begin(); cur != operation.end(); ++cur) {
+				if ((*cur == ' ') || (cur++ == operation.end())) {
+					arguments.push_back(arg);
+					arg.clear();
+				}
+				else
+					arg += *cur;
+			}
+
+			Create f;
+			(f.factory_metod(arguments, stack))->abstract_operation(arguments, stack);
+
+			arguments.clear();
+		}
 	}
 };
 
-class Push : public Operations {
-public:
-	void abstract_operation() {}
-};
-
-class Calc {
-	stack <float> st;
-    public:
-		virtual Operations *set_operation() = 0;
-		void call(string operation, ifstream &in) {
-			string operand, num;
-
-			if (operation == "PUSH") {
-				if (!in.eof())
-					getline(in, operand, ' ');
-			}
-
-			if (operation == "DEFINE") {
-				if (!in.eof())
-					getline(in, num, ' ');
-				float number = stof(num);
-
-				if (!in.eof())
-					getline(in, operand, ' ');
-			}
-
-			//if(operation == "SQRT")
-
-
-			//if(operation == "PRINT")
-
-		}
-};
-
-class PushDef : public Calc {
-    public:
-		Operations *set_operation() {
-			
-		}
-};
-
-void read(ifstream &in) {
-	string operation;
-
-	while (!in.eof()) {
-		getline(in, operation, ' ');
-		//call(operation, in);
-	}
-
-}
 
 int main(int argc, const char *argv[]) {
 	ifstream in;
-	
+
 	if (argc == 2) {
 		in.open(argv[1]);
 	}
 
 
-	 
 	return 0;
 }
