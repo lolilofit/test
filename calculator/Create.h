@@ -56,13 +56,12 @@
 
 	class CreateDivide : public Create {
 		Operations* make(list<string> arguments, Context &stack) override;
+
+		void catch_ecxeption(list<string> arguments, Context &stack) override;
 	};
 
 	class CreateMultiply : public Create {
-		Operations* make(list<string> arguments, Context &stack) override {
-			MULTIPLY *operation = new MULTIPLY();
-			return operation;
-		}
+		Operations* make(list<string> arguments, Context &stack) override;
 	};
 
 	class CreateSqrt : public Create {

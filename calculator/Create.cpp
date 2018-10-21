@@ -98,6 +98,10 @@ Operations* CreateDivide::make(list<string> arguments, Context &stack) {
 	return new DIVIDE();
 }
 //
+
+Operations* CreateMultiply::make(list<string> arguments, Context &stack) {
+	return new MULTIPLY();
+}
 Operations* CreateSqrt::make(list<string> arguments, Context &stack)  {
 	SQRT *operation = new SQRT();
 	return operation;

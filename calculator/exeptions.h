@@ -57,4 +57,17 @@ class Minus_lenght : public MinusEcxeption {
 class Minus_argument : public MinusEcxeption {
 	const char* what() const throw() override { return "Minus bad argument"; }
 };
+
+class DivideEcxeption : public MyExceptions {
+public:
+	const char* what() const throw() override { return "/ Failure"; }
+};
+
+class Divide_lenght : public DivideEcxeption {
+	const char* what() const throw() override { return "divide bad lenght"; }
+};
+
+class Divide_argument : public DivideEcxeption {
+	const char* what() const throw() override { return "Divide bad argument"; }
+};
 #endif 
