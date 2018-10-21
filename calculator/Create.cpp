@@ -69,15 +69,35 @@ void CreatePlus::catch_ecxeption(list<string> arguments, Context &stack) {
 }
 
 Operations* CreateMinus::make(list<string> arguments, Context &stack) {
-	
+	catch_ecxeption(arguments, stack);
+
 	return new MINUS();
 }
 
-Operations* CreateDivide::make(list<string> arguments, Context &stack) {
-	DIVIDE *operation = new DIVIDE();
-	return operation;
+void CreateMinus::catch_ecxeption(list<string> arguments, Context &stack) {
+	Operations fun;
+
+	if (arguments.size() != 2) {
+		Minus_lenght e;
+		throw e;
+	}
+
+	if ((!fun.is_number(*(arguments.begin()))) && (stack.count(*(arguments.begin())) == 0)) {
+		Minus_argument err_one;
+		throw err_one;
+	}
+
+	if ((!fun.is_number(*(arguments.begin()++))) && (stack.count(*(arguments.begin()++)) == 0)) {
+		Minus_argument err_two;
+		throw err_two;
+	}
 }
 
+Operations* CreateDivide::make(list<string> arguments, Context &stack) {
+	catch_ecxeption(arguments, stack);
+	return new DIVIDE();
+}
+//
 Operations* CreateSqrt::make(list<string> arguments, Context &stack)  {
 	SQRT *operation = new SQRT();
 	return operation;

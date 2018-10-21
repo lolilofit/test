@@ -44,11 +44,14 @@
 
 	class CreatePlus : public Create {
 		Operations* make(list<string> arguments, Context &stack) override;
+
 		void catch_ecxeption(list<string> arguments, Context &stack) override;
 	};
 
 	class CreateMinus : public Create {
 		Operations* make(list<string> arguments, Context &stack) override;
+
+		void catch_ecxeption(list<string> arguments, Context &stack) override;
 	};
 
 	class CreateDivide : public Create {

@@ -5,7 +5,9 @@
 void Base::abstract_operation(list<string> arguments, Context &stack) {}
 
 bool Operations::is_number(string val) {
-	for (auto cur = val.begin(); cur != val.end(); ++cur) {
+	if ((*val.begin() != '-') && ((*val.begin() < '0') || (*val.begin() > '9')))
+		return 0;
+	for (auto cur = val.begin()++; cur != val.end(); ++cur) {
 		if ((*cur != '.') &&( (*cur < '0') || (*cur > '9')))
 			return 0;
 	}

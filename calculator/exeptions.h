@@ -37,12 +37,24 @@ public:
 	const char* what() const throw() override { return "+ Failure"; }
 };
 
-class Plus_lenght : public PushEcxeption {
+class Plus_lenght : public PlusEcxeption {
 	const char* what() const throw() override { return "Plus bad lenght"; }
 };
 
-class Plus_argument : public PushEcxeption {
+class Plus_argument : public PlusEcxeption {
 	const char* what() const throw() override { return "Plus bad argument"; }
 };
 
+class MinusEcxeption : public MyExceptions {
+public:
+	const char* what() const throw() override { return "- Failure"; }
+};
+
+class Minus_lenght : public MinusEcxeption {
+	const char* what() const throw() override { return "Minus bad lenght"; }
+};
+
+class Minus_argument : public MinusEcxeption {
+	const char* what() const throw() override { return "Minus bad argument"; }
+};
 #endif 
