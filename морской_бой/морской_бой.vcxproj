@@ -115,12 +115,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="arena.cpp" />
+    <ClCompile Include="console_view.cpp" />
+    <ClCompile Include="create.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gamer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arena.h" />
+    <ClInclude Include="console_view.h" />
+    <ClInclude Include="create.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gamer.h" />
     <ClInclude Include="init.h" />
+    <ClInclude Include="optionparser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
