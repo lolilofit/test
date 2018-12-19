@@ -1,0 +1,100 @@
+#ifndef RARSER_H
+#define PARSER_H
+
+#include<iostream>
+#include<fstream>
+#include<tuple>
+#include<string>
+
+class Proxy;
+
+template<class Ch, class Tr, class... Args>
+class CSVParser {
+	std::basic_ostream<Ch, Tr> os;
+	char _space;
+	int count = 0;
+
+	std::tuple<Args...> make_tuple_str(std::string line) {
+		std::stringstream stream_line << line;
+		std::tuple<Args...> _tuple;
+		const int _size = sizeof(Args...);
+		for (int i = 0; i < _size; i++) {
+			std::get<i>(_tuple) << stream_line;
+		}
+	}
+	
+	std::string string_interpretation() {
+		char ch;
+		std::string line;
+		while ((ch = os.get()) != '\n') && (ch != EOF)) {
+			if (ch == _space)
+				line = line + " ";
+			else
+				line = line + ch;
+		}
+		return line;
+	}
+
+public:
+	CSVParser(std::basic_ostream<Ch, Tr>& in, char space) { _space = space; os = in; }
+
+	
+
+	class Proxy {
+		std::tuple<Args...> collection_el;
+		
+		Proxy(std::tuple<Args...> _tuple) { collection_el = _tuple}
+
+
+		bool operator!=(Proxy end) {
+			const int _size = sizeof(Args...);
+			for (int i = 0; i < _size; i++) {
+				if (std::get<i>(this->collection_el) != std::get<i>(end.collection_el))
+					return 1;
+			}
+			return 0;
+		}
+
+		std::tuple<Args...> operator*() {
+			return this->collection_el;
+		}
+
+		Proxy operator.(Proxy second) {
+			return second;
+		}
+
+		friend class CSVParser;
+	};
+
+	Proxy begin() {
+		std::string line;
+		line = string_interpretation();
+		std::tuple<Args...> _tuple;
+		_tuple = make_tuple_str(line);
+		Proxy _begin(_tuple);
+		return _begin;
+	}
+
+	Proxy end() {
+		std::string line;
+		line = string_interpretation();
+		std::tuple<Args...> _tuple;
+		Proxy _end(_tuple);
+		return _end;
+	}
+
+	Proxy operator++() {
+		std::string line;
+		line = string_interpretation();
+		std::tuple<Args...> _tuple;
+		_tuple = make_tuple_str(line);
+		Proxy _begin(_tuple);
+		return _begin;
+	}
+
+	~CSVParser() { os.close();}
+};
+
+
+
+#endif PARSER_H
